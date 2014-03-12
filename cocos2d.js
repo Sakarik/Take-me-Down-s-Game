@@ -14,7 +14,6 @@
         appFiles:[
             'src/GameLayer.js',
             'src/resource.js',
-            'src/main.js',
             'src/Player1.js'    //add your own files in order here
         ]
     };

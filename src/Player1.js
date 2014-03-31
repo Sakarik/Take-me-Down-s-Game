@@ -6,12 +6,15 @@ var play1 = cc.Sprite.extend({
         this.y = y;
         this.updatePosition();
         this.direction = play1.DIR.STILL;
-        
-
     },
      update: function( dt ) {
      	//console.log(this);
-	 switch ( this.direction ) {
+     if(!(this.x >= 0 && this.x <= 540 && this.y >= 0 && this.y <= 720)){
+	   this.x = 200;
+       this.y = 360;
+    }
+    else{
+        switch ( this.direction ) {
         case play1.DIR.UP:
             this.y += play1.MOVE_SPEED;
             break;
@@ -26,6 +29,8 @@ var play1 = cc.Sprite.extend({
             break;
         };
         this.updatePosition();
+    }
+
     },
      setDirection: function( dir ) {
         this.direction = dir;
@@ -43,7 +48,6 @@ var play1 = cc.Sprite.extend({
 });
 
 play1.MOVE_SPEED = 10;
-
 play1.DIR = {
   	LEFT: 1,
     RIGHT: 2,

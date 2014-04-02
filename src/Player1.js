@@ -1,3 +1,4 @@
+var done = false;
 var play1 = cc.Sprite.extend({
     ctor: function(x, y) {
         this._super();
@@ -9,6 +10,7 @@ var play1 = cc.Sprite.extend({
     },
      update: function( dt ) {
      	//console.log(this);
+     if(done == false){
      if(!(this.x >= 0 && this.x <= 540 && this.y >= 0 && this.y <= 720)){
 	   this.x = 200;
        this.y = 360;
@@ -29,7 +31,7 @@ var play1 = cc.Sprite.extend({
             break;
         };
         this.updatePosition();
-    }
+    }}
 
     },
      setDirection: function( dir ) {
@@ -44,7 +46,10 @@ var play1 = cc.Sprite.extend({
 	} else {
 	    this.direction = play1.DIR.UP;
 	}
-    }
+    },
+     endGame: function(){
+        done = true;
+     }
 });
 
 play1.MOVE_SPEED = 10;

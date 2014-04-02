@@ -1,5 +1,5 @@
 var labelNumber = null;
-var number = 6000;
+var number = 1000;
 var updateRate = 1.0;
 var labelName = "TIME: "+number;
 
@@ -34,10 +34,15 @@ var GameLayer = cc.LayerColor.extend({
         if(number >= 0){
         if(this.labelNumber == null)
              return;
-         this.labelNumber.setString("TIME: "+number);}
+         var number2 = Math.round(number/100);
+         this.labelNumber.setString("TIME: "+number2);}
+         if(number == 0){
+            this.player1.endGame();
+         }
          //console.log(number);
     },
      onKeyDown: function( e ) {
+        
         switch( e ) {
         case cc.KEY.left:
             this.player1.setDirection( play1.DIR.LEFT );

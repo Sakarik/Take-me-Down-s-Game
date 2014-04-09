@@ -13,7 +13,6 @@ var GameLayer = cc.LayerColor.extend({
         this.labelNumber.setPosition(540,670);
         this.addChild(this.labelNumber);
         
-
         this.player1 = new play1(200,360);
         this.player1.setPosition( new cc.Point( 200, 360 ) );
         this.addChild( this.player1 );

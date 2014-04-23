@@ -16,7 +16,7 @@ var GameLayer = cc.LayerColor.extend({
         this.labelNumber.setPosition(540,670);
         this.addChild(this.labelNumber);
         
-        this.player1 = new play1(200,360);
+        this.player1 = new Player1(200,360);
         this.player1.setPosition( new cc.Point( 200, 360 ) );
         this.addChild( this.player1 );
 
@@ -27,14 +27,16 @@ var GameLayer = cc.LayerColor.extend({
         this.setKeyboardEnabled( true );
         this.player1.scheduleUpdate();
         this.lifeB1.scheduleUpdate();
-        this.schedule(this.updateNumber, 1);
+        this.schedule(this.updateTimer, 1);
 
         return true;
     },
+
     update : function(){
         this.updateNumber();
     },
-    updateNumber:function() {
+
+    updateTimer:function() {
         number--;
         if(number >= 0){
         if(this.labelNumber == null)
@@ -46,40 +48,42 @@ var GameLayer = cc.LayerColor.extend({
          }
          //console.log(number);
     },
+
      onKeyDown: function( e ) {
         
         switch( e ) {
         case cc.KEY.left:
-            this.player1.setDirection( play1.DIR.LEFT );
+            this.player1.setDirection( Player1.DIR.LEFT );
             break;
         case cc.KEY.right:
-            this.player1.setDirection( play1.DIR.RIGHT );
+            this.player1.setDirection( Player1.DIR.RIGHT );
             break;
         case cc.KEY.up:
-            this.player1.setDirection( play1.DIR.UP );
+            this.player1.setDirection( Player1.DIR.UP );
             break;
         case cc.KEY.down:
-            this.player1.setDirection( play1.DIR.DOWN );
+            this.player1.setDirection( Player1.DIR.DOWN );
             break;
         case cc.KEY.space:
             this.player1.run();
-            this.player1.shoot();
+            this.player1.shootSaliva();
             break;
         }
     },
+    
      onKeyUp: function( e ){
         switch( e ) {
         case cc.KEY.left:
-            this.player1.setDirection( play1.DIR.STILL );
+            this.player1.setDirection( Player1.DIR.STILL );
             break;
         case cc.KEY.right:
-            this.player1.setDirection( play1.DIR.STILL );
+            this.player1.setDirection( Player1.DIR.STILL );
             break;
         case cc.KEY.up:
-            this.player1.setDirection( play1.DIR.STILL );
+            this.player1.setDirection( Player1.DIR.STILL );
             break;
         case cc.KEY.down:
-            this.player1.setDirection( play1.DIR.STILL );
+            this.player1.setDirection( Player1.DIR.STILL );
             break;
         }
      },

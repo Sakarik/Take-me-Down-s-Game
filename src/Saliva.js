@@ -5,10 +5,12 @@ var Saliva = cc.Sprite.extend({
         this.setPosition(position);
         this.scheduleUpdate();
     },
+
     update: function( dt ) {
     	this.setPositionX(this.getPositionX()+10); 
-        if(this.getPositionX() == 1080)
+        if(this.getPositionX() == 1080){
             this.getParent().removeChild(this);
-    },
+        }
+    }
 
  });

@@ -14,6 +14,7 @@ var g_resources = [
     {src: 'res/images/a5.png' },
     {src: 'res/images/a6.png' },
     {src: 'res/images/backGround.png' },
+    {src: 'res/images/saliva.png' },
 
 
 

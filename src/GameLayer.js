@@ -62,8 +62,8 @@ var GameLayer = cc.LayerColor.extend({
             this.player1.setDirection( play1.DIR.DOWN );
             break;
         case cc.KEY.space:
-            this.lifeB1.hitted();
             this.player1.run();
+            this.player1.shoot();
             break;
         }
     },

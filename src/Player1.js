@@ -45,8 +45,10 @@ var play1 = cc.Sprite.extend({
         return cc.RepeatForever.create( cc.Animate.create( standAnime ));
     },
     run: function() {
-        this.anime = this.shootAnimation();
-        this.runAction(this.anime);
+        if(done == false){
+            this.anime = this.shootAnimation();
+            this.runAction(this.anime);
+         }
     },
     shootAnimation: function(){
         var shootAnime = new cc.Animation.create();
@@ -75,6 +77,12 @@ var play1 = cc.Sprite.extend({
      endGame: function(){
         done = true;
         this.stopAction(this.anime);
+     },
+     shoot:function(){
+        if(done == false){
+            this.saliva = new Saliva(this.getPosition());
+            this.getParent().addChild(this.saliva);
+        }
      }
 });
 

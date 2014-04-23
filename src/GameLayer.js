@@ -1,6 +1,5 @@
 var labelNumber = null;
-var number = 1000;
-var updateRate = 1.0;
+var number = 60
 var labelName = "TIME: "+number;
 
 var GameLayer = cc.LayerColor.extend({
@@ -8,15 +7,19 @@ var GameLayer = cc.LayerColor.extend({
         this._super( new cc.Color4B( 127, 127, 127, 255 ) );
         this.setPosition( new cc.Point( 0, 0 ) );
 
+        this.bg = new BackGround();
+        this.bg.setPosition( new cc.Point( 540, 670 ) );
+        this.addChild( this.bg );
+
         this.labelNumber = cc.LabelTTF.create(labelName, "Arial", 72);
         this.labelNumber.setColor(cc.c3(64, 64, 64));
-        this.labelNumber.setPosition(540,670);
+        this.labelNumber.setPosition(360,670);
         this.addChild(this.labelNumber);
         
         this.player1 = new play1(200,360);
         this.player1.setPosition( new cc.Point( 200, 360 ) );
         this.addChild( this.player1 );
-        
+
         this.lifeB1 = new Life1(100,630);
         this.lifeB1.setPosition( new cc.Point( 100, 630 ) );
         this.addChild( this.lifeB1 );
@@ -24,17 +27,20 @@ var GameLayer = cc.LayerColor.extend({
         this.setKeyboardEnabled( true );
         this.player1.scheduleUpdate();
         this.lifeB1.scheduleUpdate();
-        this.schedule(this.updateNumber, this.updateRate);
+        this.schedule(this.updateNumber, 1);
 
         return true;
+    },
+    update : function(){
+        this.updateNumber();
     },
     updateNumber:function() {
         number--;
         if(number >= 0){
         if(this.labelNumber == null)
              return;
-         var number2 = Math.round(number/100);
-         this.labelNumber.setString("TIME: "+number2);}
+        // var number2 = Math.round(number/100);
+         this.labelNumber.setString("TIME: "+number);}
          if(number == 0){
             this.player1.endGame();
          }
@@ -57,6 +63,7 @@ var GameLayer = cc.LayerColor.extend({
             break;
         case cc.KEY.space:
             this.lifeB1.hitted();
+            this.player1.run();
             break;
         }
     },

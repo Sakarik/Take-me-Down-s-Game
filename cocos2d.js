@@ -15,7 +15,10 @@
             'src/GameLayer.js',
             'src/resource.js',
             'src/Player1.js',
-            'src/LifeB1.js',   //add your own files in order here
+            'src/LifeB1.js',  
+            'src/BackGround.js',  
+            'src/Saliva.js',  
+             //add your own files in order here
         ]
     };
 

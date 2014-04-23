@@ -30,7 +30,7 @@ var play1 = cc.Sprite.extend({
             this.temp_x += play1.MOVE_SPEED;
             break;
         };
-        if((this.temp_x + this.x) > 0 && (this.temp_x + this.x) < 540 && (this.temp_y + this.y > 0) && (this.temp_y + this.y) < 720 ){
+        if((this.temp_x + this.x) > 30 && (this.temp_x + this.x) < 500 && (this.temp_y + this.y > 30) && (this.temp_y + this.y) < 520 ){
             this.x += this.temp_x;
             this.y += this.temp_y;
         } 

@@ -8,12 +8,12 @@ var GameLayer = cc.LayerColor.extend({
         this.setPosition( new cc.Point( 0, 0 ) );
 
         this.bg = new BackGround();
-        this.bg.setPosition( new cc.Point( 540, 670 ) );
+        this.bg.setPosition( new cc.Point( 540, 360 ) );
         this.addChild( this.bg );
 
         this.labelNumber = cc.LabelTTF.create(labelName, "Arial", 72);
-        this.labelNumber.setColor(cc.c3(64, 64, 64));
-        this.labelNumber.setPosition(360,670);
+        this.labelNumber.setColor(cc.c3(200, 00, 00));
+        this.labelNumber.setPosition(540,670);
         this.addChild(this.labelNumber);
         
         this.player1 = new play1(200,360);

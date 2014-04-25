@@ -1,6 +1,6 @@
 var labelNumber = null;
 var number = 60
-var labelName = "TIME: "+number;
+var labelName = number;
 
 var GameLayer = cc.LayerColor.extend({
     init: function() {
@@ -11,9 +11,9 @@ var GameLayer = cc.LayerColor.extend({
         this.bg.setPosition( new cc.Point( 540, 360 ) );
         this.addChild( this.bg );
 
-        this.labelNumber = cc.LabelTTF.create(labelName, "Arial", 72);
-        this.labelNumber.setColor(cc.c3(200, 00, 00));
-        this.labelNumber.setPosition(540,670);
+        this.labelNumber = cc.LabelTTF.create(labelName, "Marker Felt", 60);
+        this.labelNumber.setColor(cc.c3(100, 00, 00));
+        this.labelNumber.setPosition(520,615);
         this.addChild(this.labelNumber);
         
         this.player1 = new Player1(200,360);
@@ -42,7 +42,7 @@ var GameLayer = cc.LayerColor.extend({
         if(this.labelNumber == null)
              return;
         // var number2 = Math.round(number/100);
-         this.labelNumber.setString("TIME: "+number);}
+         this.labelNumber.setString(number);}
          if(number == 0){
             this.player1.endGame();
          }

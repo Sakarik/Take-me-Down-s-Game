@@ -1,4 +1,5 @@
 var checkGameEnd = false;
+var checkMove = false;
 var Player1 = cc.Sprite.extend({
 
     ctor: function(x, y) {
@@ -31,13 +32,17 @@ var Player1 = cc.Sprite.extend({
                     this.temp_x += Player1.MOVE_SPEED;
                     break;
         };
-        if((this.temp_x + this.x) > 30 && 
-            (this.temp_x + this.x) < 500 && 
-            (this.temp_y + this.y > 30) && 
-            (this.temp_y + this.y) < 520 ){
+        if((this.temp_x + this.x) > (30+(this.temp_y + this.y)/6) && 
+            (this.temp_x + this.x) <= 500 && 
+            (this.temp_y + this.y) > 50 && 
+            (this.temp_y + this.y) <= 520 ){
                 this.x += this.temp_x;
                 this.y += this.temp_y;
         } 
+        else if(this.x < 500 && this.y < 510){
+            this.x += 1;
+            this.y += 6;
+        }
         this.updatePosition();
     }},
 

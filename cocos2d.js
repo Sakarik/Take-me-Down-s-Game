@@ -14,7 +14,7 @@
         appFiles:[
             'src/GameLayer.js',
             'src/resource.js',
-            'src/Player1.js',
+            'src/Player.js',
             'src/LifeB1.js',  
             'src/BackGround.js',  
             'src/Saliva.js',  

@@ -1,5 +1,5 @@
 var labelNumber = null;
-var number = 10
+var number = 3;
 var labelName = number;
 
 var GameLayer = cc.LayerColor.extend({
@@ -16,12 +16,12 @@ var GameLayer = cc.LayerColor.extend({
         this.labelNumber.setPosition(520,615);
         this.addChild(this.labelNumber);
         
-        this.player1 = new Player1(200,360);
+        this.player1 = new Player(200,360,1);
         this.player1.setPosition( new cc.Point( 200, 360 ) );
         this.player1.setFlippedX(true);
         this.addChild( this.player1 );
 
-        this.player2 = new Player1(880,360);
+        this.player2 = new Player(880,360,2);
         this.player2.setPosition( new cc.Point( 880, 360 ) );
         this.addChild( this.player2 );
 
@@ -56,48 +56,63 @@ var GameLayer = cc.LayerColor.extend({
          this.labelNumber.setString(number);}
          if(number == -1){
             this.player1.endGame();
+            this.player2.endGame();
          }
          //console.log(number);
     },
 
      onKeyDown: function( e ) {
-        
-        switch( e ) {
-        case cc.KEY.left:
-            this.player1.setDirection( Player1.DIR.LEFT );
-            break;
-        case cc.KEY.right:
-            this.player1.setDirection( Player1.DIR.RIGHT );
-            break;
-        case cc.KEY.up:
-            this.player1.setDirection( Player1.DIR.UP );
-            break;
-        case cc.KEY.down:
-            this.player1.setDirection( Player1.DIR.DOWN );
-            break;
-        case cc.KEY.space:
+        if (e == cc.KEY.a)
+            this.player1.setDirection( Player.DIR.LEFT );
+        else if (e == cc.KEY.d)
+            this.player1.setDirection( Player.DIR.RIGHT );
+        else if (e == cc.KEY.w)
+            this.player1.setDirection( Player.DIR.UP );
+        else if (e == cc.KEY.s)
+            this.player1.setDirection( Player.DIR.DOWN );
+        else if (e == cc.KEY.f){
             this.player1.run();
             this.player1.shootSaliva();
-            break;
+        };
+        if (e == cc.KEY.left){
+            //console.log(e);
+            this.player2.setDirection( Player.DIR.LEFT );
+        }else if (e == cc.KEY.right)
+            {//console.log(e);
+            this.player2.setDirection( Player.DIR.RIGHT );
+        }else if (e == cc.KEY.up){
+            {//console.log(e);
+            this.player2.setDirection( Player.DIR.UP );}
+        }else if (e == cc.KEY.down){
+            //console.log(e);
+            this.player2.setDirection( Player.DIR.DOWN );
         }
+        else if (e == cc.KEY.space){
+            //console.log(e);
+            this.player2.run();
+            this.player2.shootSaliva();
+        };
     },
     
      onKeyUp: function( e ){
-        switch( e ) {
-        case cc.KEY.left:
-            this.player1.setDirection( Player1.DIR.STILL );
-            break;
-        case cc.KEY.right:
-            this.player1.setDirection( Player1.DIR.STILL );
-            break;
-        case cc.KEY.up:
-            this.player1.setDirection( Player1.DIR.STILL );
-            break;
-        case cc.KEY.down:
-            this.player1.setDirection( Player1.DIR.STILL );
-            break;
-        }
+        if (e == cc.KEY.a)
+            this.player1.setDirection( Player.DIR.STILL );
+        else if (e == cc.KEY.d)
+            this.player1.setDirection( Player.DIR.SILL );
+        else if (e == cc.KEY.w)
+            this.player1.setDirection( Player.DIR.STILL );
+        else if (e == cc.KEY.s)
+            this.player1.setDirection( Player.DIR.STILL );
+        if (e == cc.KEY.left)
+            this.player2.setDirection( Player.DIR.STILL );
+        else if (e == cc.KEY.right)
+            this.player2.setDirection( Player.DIR.STILL );
+        else if (e == cc.KEY.up)
+            this.player2.setDirection( Player.DIR.STILL );
+        else if (e == cc.KEY.down)
+            this.player2.setDirection( Player.DIR.STILL );
      },
+
 });
  
 var StartScene = cc.Scene.extend({

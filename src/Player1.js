@@ -5,7 +5,6 @@ var Player1 = cc.Sprite.extend({
     ctor: function(x, y) {
         this._super();
         this.initWithFile( 'res/images/s1.png'  );
-        this.setFlippedX(true);
         this.x = x;
         this.y = y;
         this.updatePosition();
@@ -92,8 +91,7 @@ var Player1 = cc.Sprite.extend({
 
     endGame: function(){
         checkGameEnd = true;
-        this.stopAction(this.anime);
-     },
+    },
 
      shootSaliva:function(){
         if(checkGameEnd == false){

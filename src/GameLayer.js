@@ -1,5 +1,5 @@
 var labelNumber = null;
-var number = 60
+var number = 10
 var labelName = number;
 
 var GameLayer = cc.LayerColor.extend({
@@ -18,15 +18,26 @@ var GameLayer = cc.LayerColor.extend({
         
         this.player1 = new Player1(200,360);
         this.player1.setPosition( new cc.Point( 200, 360 ) );
+        this.player1.setFlippedX(true);
         this.addChild( this.player1 );
 
-        this.lifeB1 = new Life1(100,630);
-        this.lifeB1.setPosition( new cc.Point( 100, 630 ) );
+        this.player2 = new Player1(880,360);
+        this.player2.setPosition( new cc.Point( 880, 360 ) );
+        this.addChild( this.player2 );
+
+        this.lifeB1 = new Life1(100,640);
+        this.lifeB1.setPosition( new cc.Point( 180, 640 ) );
         this.addChild( this.lifeB1 );
+
+        this.lifeB2 = new Life1(900,640);
+        this.lifeB2.setPosition( new cc.Point( 900, 640 ) );
+        this.addChild( this.lifeB2 );
         
         this.setKeyboardEnabled( true );
         this.player1.scheduleUpdate();
+        this.player2.scheduleUpdate();
         this.lifeB1.scheduleUpdate();
+        this.lifeB2.scheduleUpdate();
         this.schedule(this.updateTimer, 1);
 
         return true;
@@ -43,7 +54,7 @@ var GameLayer = cc.LayerColor.extend({
              return;
         // var number2 = Math.round(number/100);
          this.labelNumber.setString(number);}
-         if(number == 0){
+         if(number == -1){
             this.player1.endGame();
          }
          //console.log(number);

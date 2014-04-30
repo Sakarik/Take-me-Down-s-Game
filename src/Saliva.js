@@ -10,15 +10,24 @@ var Saliva = cc.Sprite.extend({
         this.scheduleUpdate();
     },
 
+    getNum: function() {
+        return this.num;
+    },
+
     update: function( dt ) {
         if(this.num == 1)
     	   this.setPositionX(this.getPositionX()+15); 
         else
             this.setPositionX(this.getPositionX()-15);   
 
-        if(this.getPositionX() == 1080 || this.getPositionX() == 0){
+        if(this.getPositionX() >= 1080 || this.getPositionX() <= 0){
             this.getParent().removeChild(this);
         }
-    }
+    },
+
+    hit : function(){
+        this.setPosition(1000,1000);
+        this.removeFromParent(true);
+    },
 
  });

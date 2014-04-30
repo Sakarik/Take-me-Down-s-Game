@@ -1,5 +1,5 @@
 var labelNumber = null;
-var number = 3;
+var number = 60;
 var labelName = number;
 
 var GameLayer = cc.LayerColor.extend({
@@ -16,15 +16,6 @@ var GameLayer = cc.LayerColor.extend({
         this.labelNumber.setPosition(520,615);
         this.addChild(this.labelNumber);
         
-        this.player1 = new Player(200,360,1);
-        this.player1.setPosition( new cc.Point( 200, 360 ) );
-        this.player1.setFlippedX(true);
-        this.addChild( this.player1 );
-
-        this.player2 = new Player(880,360,2);
-        this.player2.setPosition( new cc.Point( 880, 360 ) );
-        this.addChild( this.player2 );
-
         this.lifeB1 = new Life1(100,640);
         this.lifeB1.setPosition( new cc.Point( 180, 640 ) );
         this.addChild( this.lifeB1 );
@@ -32,6 +23,18 @@ var GameLayer = cc.LayerColor.extend({
         this.lifeB2 = new Life1(900,640);
         this.lifeB2.setPosition( new cc.Point( 900, 640 ) );
         this.addChild( this.lifeB2 );
+
+        this.player1 = new Player(200,360,1,this.lifeB1);
+        this.player1.setPosition( new cc.Point( 200, 360 ) );
+        this.player1.setFlippedX(true);
+        this.addChild( this.player1 );
+
+        this.player2 = new Player(880,360,2,this.lifeB2);
+        this.player2.setPosition( new cc.Point( 880, 360 ) );
+        this.addChild( this.player2 );
+
+        this.player1.setPlayer2(this.player2);
+        this.player2.setPlayer2(this.player1);        
         
         this.setKeyboardEnabled( true );
         this.player1.scheduleUpdate();
@@ -61,6 +64,8 @@ var GameLayer = cc.LayerColor.extend({
          //console.log(number);
     },
 
+
+
      onKeyDown: function( e ) {
         if (e == cc.KEY.a)
             this.player1.setDirection( Player.DIR.LEFT );
@@ -70,7 +75,7 @@ var GameLayer = cc.LayerColor.extend({
             this.player1.setDirection( Player.DIR.UP );
         else if (e == cc.KEY.s)
             this.player1.setDirection( Player.DIR.DOWN );
-        else if (e == cc.KEY.f){
+        if (e == cc.KEY.f){
             this.player1.run();
             this.player1.shootSaliva();
         };
@@ -87,7 +92,7 @@ var GameLayer = cc.LayerColor.extend({
             //console.log(e);
             this.player2.setDirection( Player.DIR.DOWN );
         }
-        else if (e == cc.KEY.space){
+        if (e == cc.KEY.space){
             //console.log(e);
             this.player2.run();
             this.player2.shootSaliva();

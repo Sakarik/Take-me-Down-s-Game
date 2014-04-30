@@ -2,13 +2,17 @@ var checkGameEnd = false;
 var checkMove = false;
 var Player = cc.Sprite.extend({
 
-    ctor: function(x, y,num) {
+    ctor: function(x, y,num,lifeB) {
         this._super();
         this.initWithFile( 'res/images/s1.png'  );
         this.x = x;
         this.y = y;
         this.num = num;
+        this.live = 10;
+        this.maxLive = 10;
+        this.lifeB = lifeB;
         this.updatePosition();
+        this.salivaList = [];
         this.direction = Player.DIR.STILL;
         if(checkGameEnd == false){
             this.anime = this.standAnimation();
@@ -16,21 +20,48 @@ var Player = cc.Sprite.extend({
         };
        
     },
+    setPlayer2: function( player2 ) {
+        this.player2 = player2;
+        this.salivaList2 = player2.getSaliva();
+    },
+
+    getSaliva: function( ) {
+        return this.salivaList;
+    },
 
     update: function( dt ) {
+     if(checkGameEnd){
+        this.stopAction(this.anime);
+        this.runAction(this.deadAction());
+     }
      if(checkGameEnd == false){
         if(this.num == 1)
            {
-            console.log("do1");
+           // console.log("do1");
             this.movingArea1();
             }
 
         else
            {
-            console.log("do2");
+          //  console.log("do2");
             this.movingArea2();
            } 
         }
+    for(var i = 0; i<this.salivaList2.length ; i++){
+        var saliva = this.salivaList2[i];
+        var posP = this.getPosition();
+        var posS = saliva.getPosition();
+        // console.log(saliva.getNum() + " ooo " + this.num );
+        if(saliva.getNum() != this.num){
+            // console.log("ice");
+            if((posP.x+15) >=  posS.x && (posP.x-15)  <= posS.x && (posP.y+15) >=  posS.y && (posP.y-15)  <= posS.y) {
+                this.live -= 1;
+                console.log(this.live+" "+ this.num);
+                this.lifeB.hitted(this.live,this.maxLive);
+                saliva.hit();
+            }
+        }
+    }
     },
 
     movingArea1: function(){
@@ -144,21 +175,23 @@ var Player = cc.Sprite.extend({
        var standAnime = new cc.Animation.create();
         standAnime.setDelayPerUnit( 0.15 );
         standAnime.addSpriteFrameWithFile('res/images/dead.png' );
-        standAnime.addSpriteFrameWithFile('res/images/dead.png' );
         return cc.RepeatForever.create( cc.Animate.create( standAnime ));
     },
 
     endGame: function(){
         checkGameEnd = true;
+        this.setPositionY(this.getPositionY() + 43);
         this.stopAction(this.anime);
         this.runAction(this.deadAction());
-        this.getParent.remove(this);
+//        this.getParent.remove(this);
     },
 
      shootSaliva:function(){
         if(checkGameEnd == false){
-            this.saliva = new Saliva(this.getPosition(),this.num);
-            this.getParent().addChild(this.saliva);
+            var saliva = new Saliva(this.getPosition(),this.num);
+            this.getParent().addChild(saliva);
+                this.salivaList.push(saliva);
+
         }
      }
 

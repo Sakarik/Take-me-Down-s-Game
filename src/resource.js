@@ -16,6 +16,10 @@ var g_resources = [
     {src: 'res/images/backGround.png' },
     {src: 'res/images/saliva.png' },
     {src: 'res/images/dead.png' },
+    {src: 'res/images/blackScreen.png' },
+    {src: 'res/images/wl.png' },
+    {src: 'res/images/lw.png' },
+    {src: 'res/images/draw.png' },
 
 
 

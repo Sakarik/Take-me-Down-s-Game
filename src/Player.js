@@ -1,24 +1,25 @@
-var checkGameEnd = false;
-var checkMove = false;
+
 var Player = cc.Sprite.extend({
 
-    ctor: function(x, y,num,lifeB) {
+    ctor: function(x, y,num ,lifeBar) {
         this._super();
         this.initWithFile( 'res/images/s1.png'  );
+        
         this.x = x;
         this.y = y;
         this.num = num;
-        this.live = 10;
-        this.maxLive = 10;
-        this.lifeB = lifeB;
+
+        this.lifeBar = lifeBar;
+        this.Life = 6;
+        this.maxLife = 6;
         this.updatePosition();
         this.salivaList = [];
+        this.checkGameEnd = false;
         this.direction = Player.DIR.STILL;
-        if(checkGameEnd == false){
+        if(this.checkGameEnd == false){
             this.anime = this.standAnimation();
             this.runAction(this.anime);
         };
-       
     },
     setPlayer2: function( player2 ) {
         this.player2 = player2;
@@ -30,11 +31,7 @@ var Player = cc.Sprite.extend({
     },
 
     update: function( dt ) {
-     if(checkGameEnd){
-        this.stopAction(this.anime);
-        this.runAction(this.deadAction());
-     }
-     if(checkGameEnd == false){
+     if(this.checkGameEnd == false){
         if(this.num == 1)
            {
            // console.log("do1");
@@ -54,11 +51,17 @@ var Player = cc.Sprite.extend({
         // console.log(saliva.getNum() + " ooo " + this.num );
         if(saliva.getNum() != this.num){
             // console.log("ice");
-            if((posP.x+15) >=  posS.x && (posP.x-15)  <= posS.x && (posP.y+15) >=  posS.y && (posP.y-15)  <= posS.y) {
-                this.live -= 1;
-                console.log(this.live+" "+ this.num);
-                this.lifeB.hitted(this.live,this.maxLive);
+            if((posP.x+30) >=  posS.x && (posP.x-30)  <= posS.x && (posP.y+30) >=  posS.y && (posP.y-30)  <= posS.y) {
+                this.Life -= 1;
+                //console.log(this.Life+" "+ this.num);
+                this.lifeBar.hitted(this.Life,this.maxLife);
                 saliva.hit();
+                if(this.Life == 0)
+                    {
+                        this.endGame();
+                        this.deadAction();
+                        this.pauseSchedulerAndActions();
+                    }
             }
         }
     }
@@ -137,7 +140,7 @@ var Player = cc.Sprite.extend({
     },
 
     run: function() {
-        if(checkGameEnd == false){
+        if(this.checkGameEnd == false){
             this.anime = this.shootAnimation();
             this.runAction(this.anime);
          }
@@ -172,27 +175,30 @@ var Player = cc.Sprite.extend({
     },
 
     deadAction: function() {
-       var standAnime = new cc.Animation.create();
-        standAnime.setDelayPerUnit( 0.15 );
-        standAnime.addSpriteFrameWithFile('res/images/dead.png' );
-        return cc.RepeatForever.create( cc.Animate.create( standAnime ));
+        this.initWithFile('res/images/dead.png' );
+        this.setPositionY(this.getPositionY()+44);
+        if(this.num == 1)
+        {
+            this.setFlippedX(true);
+        }
+
     },
 
     endGame: function(){
-        checkGameEnd = true;
-        this.setPositionY(this.getPositionY() + 43);
-        this.stopAction(this.anime);
-        this.runAction(this.deadAction());
-//        this.getParent.remove(this);
+        this.checkGameEnd = true;
+        this.getParent().stopGamePlay();
     },
 
-     shootSaliva:function(){
-        if(checkGameEnd == false){
+    shootSaliva:function(){
+        if(this.checkGameEnd == false){
             var saliva = new Saliva(this.getPosition(),this.num);
             this.getParent().addChild(saliva);
-                this.salivaList.push(saliva);
-
+            this.salivaList.push(saliva);
         }
+     },
+
+     getWinner:function (){
+    
      }
 
 });

@@ -198,7 +198,7 @@ var Player = cc.Sprite.extend({
      },
 
      getWinner:function (){
-    
+
      }
 
 });

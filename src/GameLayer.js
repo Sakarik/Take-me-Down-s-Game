@@ -16,12 +16,15 @@ var GameLayer = cc.LayerColor.extend({
         this.labelNumber.setPosition(520,615);
         this.addChild(this.labelNumber);
 
-        this.lifeBar1 = new LifeBar(100,640);
-        this.lifeBar1.setPosition( new cc.Point( 180, 640 ) );
+        this.lifeBar1 = new LifeBar();
+        this.lifeBar1.setPosition( new cc.Point( 170, 640 ) );
+        this.lifeBar1.setScale(0.5,0.5);
         this.addChild(this.lifeBar1);
 
-        this.lifeBar2 = new LifeBar(900,640);
-        this.lifeBar2.setPosition( new cc.Point( 900, 640 ) );
+        this.lifeBar2 = new LifeBar();
+        this.lifeBar2.setPosition( new cc.Point( 910, 640 ) );
+        this.lifeBar2.setScale(0.5,0.5);
+        this.lifeBar2.setFlippedX(true);
         this.addChild(this.lifeBar2);
 
         this.player1 = new Player(200,360,1,this.lifeBar1);
@@ -152,7 +155,6 @@ var GameLayer = cc.LayerColor.extend({
      },
 
      stopGamePlay: function(){
-        this.pauseSchedulerAndActions();
         this.setKeyboardEnabled( false );
         this.black = cc.Sprite.create( 'res/images/blackScreen.png' );
         this.black.setPosition( new cc.Point( 540, 360 ) );
@@ -166,11 +168,12 @@ var GameLayer = cc.LayerColor.extend({
             this.result = cc.Sprite.create( 'res/images/lw.png' );
         else
             this.result = cc.Sprite.create( 'res/images/draw.png' );
+
         this.result.setPosition( new cc.Point( 558, 300 ) );
         this.result.setScale(2,2);
         this.addChild( this.result);
 
-        console.log(this.player1.Life);
+        this.pauseSchedulerAndActions();
      },
 
 });

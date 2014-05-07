@@ -23,10 +23,7 @@ var g_resources = [
     {src: 'res/images/wl.png' },
     {src: 'res/images/lw.png' },
     {src: 'res/images/draw.png' },
-
-
-
-
+    {src: 'res/images/menu.png' },
  
     //plist
  
@@ -35,6 +32,14 @@ var g_resources = [
     //tmx
  
     //bgm
- 
+	{src: "res/music/gameMusic.mp3"},
+	{src: "res/music/introMusic.mp3"},
+	{src: "res/music/endMusic.mp3"},
     //effect
+    {src: "res/effect/shoot1.mp3"},
+    {src: "res/effect/shoot2.mp3"},
+
+
+
+
 ];

@@ -19,6 +19,9 @@
             'src/BackGround.js',  
             'src/Saliva.js',
             'src/MenuLayer.js',
+            'src/StartScene.js',
+            'src/PreGameLayer.js',
+
 
              //add your own files in order here
         ]

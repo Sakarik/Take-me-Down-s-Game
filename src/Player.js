@@ -33,13 +33,11 @@ var Player = cc.Sprite.extend({
      if(this.checkGameEnd == false){
         if(this.num == 1)
            {
-           // console.log("do1");
             this.movingArea1();
             }
 
         else
            {
-          //  console.log("do2");
             this.movingArea2();
            } 
         }

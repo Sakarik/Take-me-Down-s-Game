@@ -24,6 +24,11 @@ var g_resources = [
     {src: 'res/images/lw.png' },
     {src: 'res/images/draw.png' },
     {src: 'res/images/menu.png' },
+    {src: 'res/images/pre1.png' },
+    {src: 'res/images/pre2.png' },
+    {src: 'res/images/clickMe1.png' },
+    {src: 'res/images/clickMe2.png' },
+    {src: 'res/images/clickMe3.png' },
  
     //plist
  

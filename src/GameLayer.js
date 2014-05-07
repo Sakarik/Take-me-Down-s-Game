@@ -204,17 +204,19 @@ var GameLayer = cc.LayerColor.extend({
      onTouchBegan:function( touch, event ) {
         if(this.checkEnd){
         var director = cc.Director.getInstance();
-        director.replaceScene(cc.TransitionFade.create(1.5, new MenuScene()));
+        director.replaceScene(cc.TransitionFade.create(1.5, new StartScene()));
         }
     }
 
 });
- 
-var StartScene = cc.Scene.extend({
+
+var GameLayerScene = cc.Scene.extend({
     onEnter: function() {
         this._super();
         var layer = new GameLayer();
         layer.init();
         this.addChild( layer );
-    },
+    }
 });
+
+

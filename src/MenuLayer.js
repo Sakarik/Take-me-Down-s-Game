@@ -29,7 +29,7 @@ var MenuLayer = cc.Layer.extend({
     
     clickAnimation: function(){
         var clickAnime = new cc.Animation.create();
-        clickAnime.setDelayPerUnit( 0.3  );
+        clickAnime.setDelayPerUnit( 0.2  );
         clickAnime.addSpriteFrameWithFile('res/images/clickMe1.png' );
         clickAnime.addSpriteFrameWithFile('res/images/clickMe2.png' );
         clickAnime.addSpriteFrameWithFile('res/images/clickMe3.png' );

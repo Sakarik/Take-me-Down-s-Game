@@ -13,6 +13,7 @@ var Player = cc.Sprite.extend({
         this.maxLife = 6;
         this.updatePosition();
         this.salivaList = [];
+        this.speed = Player.MOVE_SPEED; 
         this.checkGameEnd = false;
         this.direction = Player.DIR.STILL;
         if(this.checkGameEnd == false){
@@ -29,7 +30,31 @@ var Player = cc.Sprite.extend({
         return this.salivaList;
     },
 
+    inBoostZone:function(){
+        if(this.num == 1){
+            if(this.x >= 340)
+                {
+                    this.boostZone = true;
+                    this.speed = 20;
+                }
+            else
+                this.speed = 10;
+        }
+        else{
+             if(this.x <= 740)
+                {
+                    this.boostZone = true;
+                    this.speed = 20;
+                }
+            else
+                this.speed = 10;
+        }
+
+        
+    },
+
     update: function( dt ) {
+    this.inBoostZone();
      if(this.checkGameEnd == false){
         if(this.num == 1)
            {
@@ -69,16 +94,16 @@ var Player = cc.Sprite.extend({
         this.temp_y = 0;
             switch ( this.direction ) {
                 case Player.DIR.UP:
-                    this.temp_y += Player.MOVE_SPEED;
+                    this.temp_y += this.speed;
                     break;
                 case Player.DIR.DOWN:
-                    this.temp_y -= Player.MOVE_SPEED;
+                    this.temp_y -= this.speed;
                     break;
                 case Player.DIR.LEFT:
-                    this.temp_x -= Player.MOVE_SPEED;
+                    this.temp_x -= this.speed
                     break;
                 case Player.DIR.RIGHT:
-                    this.temp_x += Player.MOVE_SPEED;
+                    this.temp_x += this.speed;
                     break;
         };
         if((this.temp_x + this.x) >= 40&& 
@@ -96,16 +121,16 @@ var Player = cc.Sprite.extend({
         this.temp_y = 0;
             switch ( this.direction ) {
                 case Player.DIR.UP:
-                    this.temp_y += Player.MOVE_SPEED;
+                    this.temp_y += this.speed;
                     break;
                 case Player.DIR.DOWN:
-                    this.temp_y -= Player.MOVE_SPEED;
+                    this.temp_y -= this.speed;
                     break;
                 case Player.DIR.LEFT:
-                    this.temp_x -= Player.MOVE_SPEED;
+                    this.temp_x -= this.speed;
                     break;
                 case Player.DIR.RIGHT:
-                    this.temp_x += Player.MOVE_SPEED;
+                    this.temp_x += this.speed;
                     break;
         };
         if((this.temp_x + this.x) < 1040 && 
@@ -115,6 +140,7 @@ var Player = cc.Sprite.extend({
                 this.x += this.temp_x;
                 this.y += this.temp_y;
         } 
+
         this.updatePosition();
 
     },
@@ -192,7 +218,7 @@ var Player = cc.Sprite.extend({
 
 });
 Player.MOVE_SPEED = 10; 
- Player.DIR = {
+Player.DIR = {
   	LEFT: 1,
     RIGHT: 2,
     UP: 3,

@@ -17,7 +17,9 @@
             'src/Player.js',
             'src/LifeBar.js',  
             'src/BackGround.js',  
-            'src/Saliva.js',  
+            'src/Saliva.js',
+            'src/MenuLayer.js',
+
              //add your own files in order here
         ]
     };

@@ -1,7 +1,10 @@
 var Saliva = cc.Sprite.extend({
    	ctor: function(position,num) {
    		this._super();
-        this.initWithFile( 'res/images/saliva.png'  );
+		if(num == 1)
+			this.initWithFile( 'res/images/saliva.png'  );
+		else
+			this.initWithFile( 'res/images/saliva2.png'  );
         this.setPosition(position); 
         this.num = num;
         if(this.num == 2)

@@ -1,8 +1,9 @@
 
 var LifeBar = cc.Sprite.extend({
-    ctor: function() {
+    ctor: function(num) {
         this._super();
         this.sprite =  this.initWithFile('res/images/health.png');
+        this.num = num;
     },
 
 
@@ -25,6 +26,9 @@ var LifeBar = cc.Sprite.extend({
         else if(this.lifeP == 0){
             this.sprite = this.initWithFile('res/images/health7.png');
         }
+
+        if(this.num == 2)
+            this.setFlippedX(true);
         
     },
     hitted: function( life , maxlife ) {

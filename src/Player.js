@@ -8,7 +8,6 @@ var Player = cc.Sprite.extend({
         this.x = x;
         this.y = y;
         this.num = num;
-
         this.lifeBar = lifeBar;
         this.Life = 6;
         this.maxLife = 6;
@@ -84,17 +83,13 @@ var Player = cc.Sprite.extend({
                     this.temp_x += Player.MOVE_SPEED;
                     break;
         };
-        if((this.temp_x + this.x) > (30+(this.temp_y + this.y)/6) && 
-            (this.temp_x + this.x) <= 500 && 
-            (this.temp_y + this.y) > 50 && 
+        if((this.temp_x + this.x) >= 40&& 
+            (this.temp_x + this.x) <= 480 && 
+            (this.temp_y + this.y) > 70 && 
             (this.temp_y + this.y) <= 520 ){
                 this.x += this.temp_x;
                 this.y += this.temp_y;
         } 
-        else if(this.x < 500 && this.y < 510){
-            this.x += 1;
-            this.y += 6;
-        }
         this.updatePosition();
     },
 
@@ -115,17 +110,13 @@ var Player = cc.Sprite.extend({
                     this.temp_x += Player.MOVE_SPEED;
                     break;
         };
-        if((this.temp_x + this.x) < (1050-(this.temp_y + this.y)/6) && 
-            (this.temp_x + this.x) >= 580 && 
-            (this.temp_y + this.y) > 50 && 
+        if((this.temp_x + this.x) < 1040 && 
+            (this.temp_x + this.x) >= 590 && 
+            (this.temp_y + this.y) > 70 && 
             (this.temp_y + this.y) <= 520 ){
                 this.x += this.temp_x;
                 this.y += this.temp_y;
         } 
-        else if(this.x > 580 && this.y < 510){
-            this.x -= 1;
-            this.y += 6;
-        }
         this.updatePosition();
 
     },
@@ -194,15 +185,15 @@ var Player = cc.Sprite.extend({
             var saliva = new Saliva(this.getPosition(),this.num);
             this.getParent().addChild(saliva);
             this.salivaList.push(saliva);
+            if(this.num == 1)
+                cc.AudioEngine.getInstance().playEffect("res/effect/shoot1.mp3");
+            else
+                cc.AudioEngine.getInstance().playEffect("res/effect/shoot2.mp3");
         }
      },
 
-     getWinner:function (){
-
-     }
-
 });
- Player.MOVE_SPEED = 10; Player.PUSH_BACK = 100; 
+Player.MOVE_SPEED = 10; 
  Player.DIR = {
   	LEFT: 1,
     RIGHT: 2,

@@ -25,6 +25,7 @@ var MenuLayer = cc.Layer.extend({
 
         this.setTouchEnabled(true);
         this.setTouchMode(1);
+        this.setKeyboardEnabled( true );
     },
     
     clickAnimation: function(){
@@ -38,6 +39,14 @@ var MenuLayer = cc.Layer.extend({
 
     intro: function(){
          cc.AudioEngine.getInstance().playMusic("res/music/introMusic.mp3");
+    },
+
+    onKeyDown: function( e ) {
+        console.log(e);
+        if(e == 13){
+             var director = cc.Director.getInstance();
+             director.replaceScene(cc.TransitionFade.create(1.5, new PreGameScene()));
+        }
     },
 
     onTouchBegan:function( touch, event ) {

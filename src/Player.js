@@ -106,7 +106,7 @@ var Player = cc.Sprite.extend({
                     this.temp_x += this.speed;
                     break;
         };
-        if((this.temp_x + this.x) >= 40&& 
+        if((this.temp_x + this.x) >= 55&& 
             (this.temp_x + this.x) <= 480 && 
             (this.temp_y + this.y) > 70 && 
             (this.temp_y + this.y) <= 520 ){
@@ -133,7 +133,7 @@ var Player = cc.Sprite.extend({
                     this.temp_x += this.speed;
                     break;
         };
-        if((this.temp_x + this.x) < 1040 && 
+        if((this.temp_x + this.x) < 1030 && 
             (this.temp_x + this.x) >= 590 && 
             (this.temp_y + this.y) > 70 && 
             (this.temp_y + this.y) <= 520 ){
